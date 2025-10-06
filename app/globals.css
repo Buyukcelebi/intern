@@ -1,26 +1,88 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  body {
+    @apply antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+      /* Inter font styles (Avenir alternative) */
+      .avenir-book-45 {
+        font-family: 'Inter', system-ui, sans-serif;
+        font-weight: 400;
+        font-size: 45px;
+      }
+
+      .avenir-book-14 {
+        font-family: 'Inter', system-ui, sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+      }
+
+      .avenir-book-12 {
+        font-family: 'Inter', system-ui, sans-serif;
+        font-weight: 400;
+        font-size: 12px;
+      }
+
+      /* Montserrat font styles */
+      .montserrat-regular-15 {
+        font-family: 'Montserrat', system-ui, sans-serif;
+        font-weight: 400;
+        font-size: 15px;
+      }
+
+      .montserrat-medium-15 {
+        font-family: 'Montserrat', system-ui, sans-serif;
+        font-weight: 500;
+        font-size: 15px;
+      }
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Custom scrollbar styles */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #6b7280 #e5e7eb;
+}
+
+*::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #e5e7eb;
+  border-radius: 6px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #6b7280;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #4b5563;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus styles for accessibility */
+*:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
 }
