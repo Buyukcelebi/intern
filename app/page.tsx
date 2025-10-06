@@ -3,20 +3,12 @@ import ProductCarousel from '@/components/ProductCarousel';
 import type { ProductsResponse } from '@/types/product';
 
 async function getProducts(): Promise<ProductsResponse> {
-  const baseUrl = process.env.VERCEL_URL 
-    ? `https://${process.env.VERCEL_URL}` 
-    : process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
-  
+  // Vercel'de direkt API'yi import et
   try {
-    const res = await fetch(`${baseUrl}/api/products`, {
-      cache: 'no-store',
-    });
-
-    if (!res.ok) {
-      throw new Error(`Failed to fetch products: ${res.status}`);
-    }
-
-    return res.json();
+    const { GET } = await import('@/app/api/products/route');
+    const request = new Request('http://localhost:3000/api/products');
+    const response = await GET(request);
+    return await response.json();
   } catch (error) {
     console.error('Error fetching products:', error);
     return {
