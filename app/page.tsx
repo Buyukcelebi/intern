@@ -6,7 +6,8 @@ async function getProducts(): Promise<ProductsResponse> {
   // Vercel'de direkt API'yi import et
   try {
     const { GET } = await import('@/app/api/products/route');
-    const request = new Request('http://localhost:3000/api/products');
+    const { NextRequest } = await import('next/server');
+    const request = new NextRequest('http://localhost:3000/api/products');
     const response = await GET(request);
     return await response.json();
   } catch (error) {
