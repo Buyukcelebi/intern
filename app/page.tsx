@@ -3,10 +3,8 @@ import ProductCarousel from '@/components/ProductCarousel';
 import type { ProductsResponse } from '@/types/product';
 
 async function getProducts(): Promise<ProductsResponse> {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3001';
-  
   try {
-    const res = await fetch(`${baseUrl}/api/products`, {
+    const res = await fetch('/api/products', {
       cache: 'no-store',
     });
 
